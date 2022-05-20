@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import { SubscribeButton } from "../components/SubscribeButton";
-import stripe from "../services/stripe";
+import { stripe } from "../services/stripe";
 
 import styles from "./home.module.scss";
 
@@ -58,11 +58,11 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const product = {
-    priceId: price.id,
+    priceId: price?.id,
     amount: new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
-    }).format(price.unit_amount / 100),
+    }).format(price?.unit_amount / 100),
   };
 
   return {
